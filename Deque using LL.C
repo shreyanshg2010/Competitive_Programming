@@ -37,7 +37,6 @@ Sample Output 0
 2
 
 
-
 //HEAD
 
 #include "stdio.h"
@@ -51,39 +50,102 @@ struct dequeNode
     int data;
     struct dequeNode* next;
     struct dequeNode* prev;
-}
+};
+
 typedef struct dequeNode dequeNode;
 
 dequeNode* newNode(int val)
 {
     dequeNode* t = (dequeNode*) malloc(sizeof(dequeNode));
     t->next = t->prev = NULL;
+    t->data = val;
     return t;
 }
 
 //BODY
 
-dequeNode* head, tail;
+dequeNode *head=NULL, *tail=NULL;
 void push_back(int val)
 {
+    if(head == NULL && tail == NULL)
+    {
+        head = newNode(val);
+        tail = head;
+    }
+    else
+    {
+        dequeNode *temp = newNode(val);
+        tail->next = temp;
+        temp->prev = tail;
+        tail = temp;
+    }
 }
 void push_front(int val)
 {
+    if(head == NULL && tail == NULL)
+    {
+        head = newNode(val);
+        tail = head;
+    }
+    else
+    {
+        dequeNode *ptr = newNode(val);
+        ptr->next = head;
+        head->prev = ptr;
+        head = ptr;
+    }
 }
 int back()
 {
+    if(head==NULL && tail==NULL)
+        return 0;
+    return tail->data;
 }
 int front()
 {
+    if(head==NULL && tail==NULL)
+        return 0;
+    return head->data;
 }
 void pop_back()
 {
+    if(tail == NULL || head == NULL)
+        return;
+    else if(tail->prev == NULL)
+    {
+        head=NULL;
+        tail=NULL;
+    }
+    else
+    {
+        dequeNode *temp = tail;
+        tail = tail->prev;
+        tail->next = NULL;
+        free(temp);
+    }
 }
 void pop_front()
 {
+    if(head==NULL || tail==NULL)
+        return;
+    else if(head->next == NULL)
+    {
+        head=NULL;
+        tail=NULL;
+    }
+    else
+    {
+        dequeNode *temp = head;
+        head = head->next;
+        head->prev = NULL;
+        free(temp);
+    }
 }
 int empty()
 {
+    if(head==NULL && tail==NULL)
+        return 1;
+    return 0;
 }
 
 // TAIL
