@@ -10,6 +10,7 @@ Sample Output: 5 7 9 1 3
 
 Explanation: We have to perform 3 rotations : 1st rotation : 9 1 3 5 7 2nd rotation : 7 9 1 3 5 3rd rotation : 5 7 9 1 3
 
+    
 Input Format
 
 First line contains an integer n. Second line contains n integers, denoting the array a[n]. Third line contains one integer k, the number of times the array is to be rotated.
