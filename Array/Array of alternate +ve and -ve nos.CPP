@@ -1,4 +1,5 @@
-Given an unsorted array of positive and negative numbers. Your task is to create an array of alternate positive and negative numbers without changing the relative order of positive and negative numbers.
+Given an unsorted array of positive and negative numbers. 
+Your task is to create an array of alternate positive and negative numbers without changing the relative order of positive and negative numbers.
 
 Input:
 First line of input contains an integer T denoting the number of test cases. For each testcase, first line contains N, size of array. The subsequent line contains N array elements.
@@ -23,7 +24,7 @@ Output:
 
 
 
-
+#include<iostream>
 #include <queue>
 using namespace std;
 
@@ -73,4 +74,57 @@ int main() {
         cout << endl;
     }
 	return 0;
+}
+
+
+
+Approach 2:
+
+#include<iostream>
+using namespace std;
+
+#include<vector>
+
+int main()
+{
+    int t,i,n,data;
+    cin>>t;
+    while(t>0)
+    {
+        int count=0;
+    vector<int>odd;
+    vector<int>even;
+    cin>>n;
+    for(i=1;i<=n;i++)
+    {
+        cin>>data;
+        if(data>=0)
+        {
+            even.push_back(data);
+        }
+        else
+        {
+            odd.push_back(data);
+        }
+    }
+    for(i=0;i<even.size();i++)
+    {
+        cout<<even[i]<<" ";
+        if(i<=odd.size()-1)
+        {
+            cout<<odd[i]<<" ";
+            count++;
+        }
+    }
+    if(count!=odd.size()-1)
+    {
+        for(int j=i;j<odd.size();j++)
+        {
+            cout<<odd[j]<<" ";
+        }
+    }
+    cout<<endl;
+    t--;
+    }
+    
 }
